@@ -2,6 +2,8 @@
 
 This is the code repository for the paper: [Task-Specific Skill Localization in Fine-tuned Language Models](https://arxiv.org/abs/2302.06600) (To appear in ICML'23).
 
+## Necessary files
+We provide a yml file that can be used to create a conda environment, containing all the necessary packages.
 
 ## Installation
 Install necessary conda environment using 

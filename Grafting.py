@@ -15,11 +15,12 @@ import filelock
 import transformers
 from transformers import AutoConfig, AutoModelForSequenceClassification, AutoTokenizer, EvalPrediction, GPT2LMHeadModel
 from transformers import GlueDataTrainingArguments as DataTrainingArguments
-from transformers import HfArgumentParser, TrainingArguments, set_seed
+from transformers import TrainingArguments, set_seed
 from src.gptdataset import gptDataset
 from src.gpt_trainer import gptTrainer
 from torch.utils.data import DataLoader
 
+from tools.hf_argparser import HfArgumentParser
 from src.dataset import FewShotDataset
 from src.models import BertForPromptFinetuning, RobertaForPromptFinetuning, resize_token_type_embeddings
 from src.trainer import Trainer
