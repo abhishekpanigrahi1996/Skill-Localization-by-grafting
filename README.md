@@ -17,7 +17,7 @@ Please follow the repository [LM-BFF-main](https://github.com/princeton-nlp/LM-B
 Please make two new folders: log_files and ckpt_paths before running the code below. The results of fine-tuning and grafting are stored in a log file inside log_files (please see run_experiment.sh and run_grfat_experiment.sh for he filenames). The model checkpoints are stored in ckpt_paths.
 
 
-## Run the code
+## Fine-tuning a model
 Please refer to run_experiment.sh for the arguments that we use to train a model on a task. For all the SGD trained single task models in the paper, the current command line in run_task.sh suffices.
 
 ```bash
