@@ -1,23 +1,50 @@
-# Task-Specific Skill localization in Fine-tuned Language Models
+## Task-Specific Skill localization in Fine-tuned Language Models
 
-This is the code repository for the paper: [Task-Specific Skill Localization in Fine-tuned Language Models](https://arxiv.org/abs/2302.06600) (To appear in ICML'23).
+This is the code repository for the paper: [Task-Specific Skill Localization in Fine-tuned Language Models](https://arxiv.org/abs/2302.06600) (Appeared in ICML'23).
 
-## Necessary files
+## Quick Links
+
+- [Task-Specific Skill localization in Fine-tuned Language Models](#task-specific-skill-localization-in-fine-tuned-language-models)
+- [Quick Links](#quick-links)
+- [Overview](#overview)
+- [Fine-tuning and Grafting](#fine-tuning-and-grafting)
+  - [Necessary Files](#necessary-files)
+  - [Installation](#installation)
+  - [Data](#data)
+  - [Necessary Folders](#necessary-folders)
+  - [Fine-tuning](#fine-tuning)
+  - [Grafting](#grafting)
+- [Bugs or Questions](#bugs-or-questions)
+- [Citation](#citation)
+
+## Overview
+
+Pre-trained language models can be fine-tuned to solve diverse NLP tasks, including in few-shot settings. Thus fine-tuning allows the model to quickly pick up task-specific “skills,” but there has been limited study of where these newlylearnt skills reside inside the massive model. This paper introduces the term skill localization for this problem and proposes a solution. Given the downstream task and a model fine-tuned on that task, a simple optimization is used to identify a very small subset of parameters (~0.01% of model parameters) responsible for (> 95%) of the model’s performance, in the sense that grafting
+the fine-tuned values for just this tiny subset onto the pre-trained model gives a performance almost
+as well as the fine-tuned model. While reminiscent of recent works on parameter-efficient
+fine-tuning, the novel aspects here are that: (i) No further re-training is needed on the subset (unlike, say, with lottery tickets). (ii) Notable improvements are seen over vanilla fine-tuning with respect to calibration of predictions in-distribution
+(40-90% error reduction) as well as the quality of predictions out-of-distribution (OOD). In models trained on multiple tasks, a stronger notion of skill localization is observed, where the sparse regions corresponding to different tasks are almost disjoint, and their overlap (when it happens) is a proxy for task similarity.
+
+
+
+## Fine-tuning and Grafting
+
+### Necessary Files
 We provide a yml file that can be used to create a conda environment, containing all the necessary packages.
 
-## Installation
+### Installation
 Install necessary conda environment using 
 conda env create -n icl_as_ft --file task_skill.yml
 
-## Data
+### Data
 Please follow the repository [LM-BFF-main](https://github.com/princeton-nlp/LM-BFF#prepare-the-data) to download all data. In the remaining codes, we assume that there is a "data" folder containing all the necessary datasets.
 
 
-## Necessary folders
-Please make two new folders: log_files and ckpt_paths before running the code below. The results of fine-tuning and grafting are stored in a log file inside log_files (please see run_experiment.sh and run_grfat_experiment.sh for he filenames). The model checkpoints are stored in ckpt_paths.
+### Necessary folders
+Please make two new folders: log_files and ckpt_paths before running the code below. The results of fine-tuning and grafting are stored in a log file inside log_files (please see run_experiment.sh and run_graft_experiment.sh for the filenames). The model checkpoints are stored in ckpt_paths.
 
 
-## Fine-tuning a model
+### Fine-tuning
 Please refer to run_experiment.sh for the arguments that we use to train a model on a task. For all the SGD trained single task models in the paper, the current command line in run_task.sh suffices.
 
 ```bash
@@ -60,10 +87,8 @@ bash run_experiment.sh
 
 
 
-## Learning a Graft
+### Grafting
 Please refer to run_graft_experiment.sh for the arguments that we use to train a graft on a task. For all the SGD trained single task models in the paper, the current command line in run_graft_task.sh suffices.
-
-
 
 
 ```bash
@@ -107,7 +132,7 @@ bash run_graft_experiment.sh;
 * `no_train`: Whether to train a mask (if True, we upload mask from checkpoint_location)
 
 
-## Bugs and questions?
+## Bugs or Questions
 If you have any questions related to the code, feel free to email Abhishek (`{ap34}@cs.princeton.edu`). If you encounter a problem or bug when using the code, you can also open an issue.
 
 
