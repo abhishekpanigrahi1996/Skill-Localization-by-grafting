@@ -6,7 +6,8 @@ This is the code repository for the paper: [Task-Specific Skill Localization in 
 
 - [Task-Specific Skill localization in Fine-tuned Language Models](#task-specific-skill-localization-in-fine-tuned-language-models)
 - [Quick Links](#quick-links)
-- [Overview](#overview)
+- [Abstract](#overview)
+ - [Overview on Grafting](#overview-on-grafting)
 - [Fine-tuning and Grafting](#fine-tuning-and-grafting)
   - [Necessary Files](#necessary-files)
   - [Installation](#installation)
@@ -17,7 +18,7 @@ This is the code repository for the paper: [Task-Specific Skill Localization in 
 - [Bugs or Questions](#bugs-or-questions)
 - [Citation](#citation)
 
-## Overview
+## Abstract
 
 Pre-trained language models can be fine-tuned to solve diverse NLP tasks, including in few-shot settings. Thus fine-tuning allows the model to quickly pick up task-specific “skills,” but there has been limited study of where these newlylearnt skills reside inside the massive model. This paper introduces the term skill localization for this problem and proposes a solution. Given the downstream task and a model fine-tuned on that task, a simple optimization is used to identify a very small subset of parameters (~0.01% of model parameters) responsible for (> 95%) of the model’s performance, in the sense that grafting
 the fine-tuned values for just this tiny subset onto the pre-trained model gives a performance almost
@@ -45,6 +46,8 @@ Please make two new folders: log_files and ckpt_paths before running the code be
 
 
 ### Fine-tuning
+To run grafting, we need to have a pre-trained model and a fine-tuned model (please refer to the overview section for grafting formulation). This section provides code to train roberta and gpt models on different downstream tasks.
+
 Please refer to run_experiment.sh for the arguments that we use to train a model on a task. For all the SGD trained single task models in the paper, the current command line in run_task.sh suffices.
 
 ```bash
@@ -88,6 +91,8 @@ bash run_experiment.sh
 
 
 ### Grafting
+With a pre-trained and fine-tuned model, we perform grafting to find the minimal set of parameters from the fine-tuned model that can be grafted onto the pre-trained model and still retain most of the model's final performance. 
+
 Please refer to run_graft_experiment.sh for the arguments that we use to train a graft on a task. For all the SGD trained single task models in the paper, the current command line in run_graft_task.sh suffices.
 
 
