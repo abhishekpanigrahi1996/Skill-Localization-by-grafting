@@ -143,7 +143,7 @@ If you have any questions related to the code, feel free to email Abhishek (`{ap
 
 ## Citation
 
-Please cite our work if you make use of our code or our pre-computed kernels in your work:
+Please cite our work if you make use of our code in your work:
 
 ```bibtex
 @article{panigrahi2023task,
